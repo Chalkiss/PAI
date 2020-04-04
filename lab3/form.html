@@ -4,9 +4,25 @@
     <meta charset="utf-8"/>
     <title>JavaScript</title>
     <script type="text/JavaScript" src="form_check.js"></script>
-    <link rel = "stylesheet" href="styles.css"></style>
+    <link rel = "stylesheet" href="styles.css">
 </head>
-<body>
+<body >
+    <table >
+        <tbody >
+                <tr><td>Wiersz 1</td></tr>
+                <tr><td>Wiersz 2</td></tr>
+                <tr><td>Wiersz 3</td></tr>
+                <tr><td>Wiersz 4</td></tr>
+                <tr><td>Wiersz 5</td></tr>
+                <tr><td>Wiersz 6</td></tr>
+                <tr><td>Wiersz 7</td></tr>
+        </tbody>
+    </table>
+    <button type="button" onclick="swapRows(this);">Zamien</button>
+    <script type = "text/javascript">
+    var sib = document.getElementsByTagName("tr")[0];
+    alterRows(1,sib);
+    </script>
     <form name= "dane_osobowe">
         <table>
             <tr><td>Imię</td><td><input type="text" name="f_imie">
@@ -16,11 +32,11 @@
             <tr><td><span class="err" id="e_nazwisko"></span></td></tr>
             <tr><td>Płeć</td>
                 <td>
-                    <input type="radio" name="f_plec" value="f_k">kobieta<br/>
-                    <input type="radio" name="f_plec" value="f_m">mezczyzna
+                    <input  type="radio" name="f_plec" value="f_k" onclick = "showElement('NazwiskoPanienskie','input')">kobieta<br/>
+                    <input  type="radio" name="f_plec" value="f_m" onclick = "hideElement('NazwiskoPanienskie','input')">mezczyzna
                 </td>
-            </tr>
-            <tr><td>N. panieńskie</td><td><input type="text"name="f_nazwisko_p"></td></tr>
+            </tr>            
+            <tr><td><span id = "NazwiskoPanienskie">N. panieńskie</span></td><td><span id="input"><input type="text"name="f_nazwisko_p"></span></td></tr>            
             <tr><td><span class="err" id="e_nazwisko_p"></span></td></tr>
             <tr><td>E-mail</td><td><input type="text"name="f_email"></td></tr>
             <tr><td><span class="err" id="e_email"></span></td></tr>
@@ -30,9 +46,12 @@
             <tr><td><span class="err" id="e_ulica"></span></td></tr>
             <tr><td>Miasto</td><td><input type="text"name="f_miasto"></td></tr>
             <tr><td><span class="err" id="e_miasto"></span></td></tr>
-            <tr><td>Uwagi</td><td><textarea rows="5"cols="15"name="uwagi"></textarea>
+            <tr><td>Uwagi</td><td><textarea rows="5"cols="15"name="uwagi"
+                    onkeyup="cnt(this.form.uwagi,document.getElementById('zostalo'), 150)">
+                </textarea>
             </td></tr>
-            <tr><td colspan="22"><input type="submit" value="Prześlij" onclick="return validate(this.form)"></td></tr>
+            <tr><td>Pozostało <span id="zostalo">150</span> znaków</td></tr>
+            <tr><td colspan="2"><input type="submit" value="Prześlij" onclick="return validate(this.form)"></td></tr>
         </table>
     </form>
 </body>
